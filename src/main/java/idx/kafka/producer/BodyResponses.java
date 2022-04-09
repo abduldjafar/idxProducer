@@ -12,6 +12,7 @@ class BodyResponses {
     private Long id;
 
     private String name;
+    private String topic;
 
     public Long getId() {
         return id;
@@ -23,14 +24,16 @@ class BodyResponses {
 
     BodyResponses() {}
 
-    BodyResponses(String name) {
+    BodyResponses(String name, String topic) {
 
         this.name = name;
+        this.topic = topic;
     }
 
     public String getName() {
         return this.name;
     }
+    public String getTopic() {return  this.topic;};
 
     public void setName(String name) {
         this.name = name;

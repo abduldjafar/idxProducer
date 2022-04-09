@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import org.apache.kafka.common.errors.TopicExistsException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
@@ -24,6 +25,7 @@ import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.Collections;
 import java.util.Optional;
+import org.springframework.boot.ApplicationArguments;
 
 @Service
 public class IdxKafkaProducer {
@@ -42,16 +44,18 @@ public class IdxKafkaProducer {
         }
     }
 
-    public  void send(String data) throws IOException {
+    @Autowired
+    private org.springframework.boot.ApplicationArguments applicationArguments;
+    public  void send(String data, String topic_name) throws IOException {
 
         // Load properties from a local configuration file
         // Create the configuration file (e.g. at '$HOME/.confluent/java.config') with configuration parameters
         // to connect to your Kafka cluster, which can be on your local host, Confluent Cloud, or any other cluster.
         // Follow these instructions to create this file: https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/java.html
-        final Properties props = loadConfig("/Users/user/IdeaProjects/IdxAttachmentGent/src/main/java/kafka.config");
+        final Properties props = loadConfig("kafka.config");
 
         // Create topic if needed
-        final String topic = "testing_result_attachment";
+        final String topic = topic_name;
         createTopic(topic, props);
 
         // Add additional properties.
