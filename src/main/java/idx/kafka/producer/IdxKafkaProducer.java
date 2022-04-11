@@ -46,7 +46,7 @@ public class IdxKafkaProducer {
 
     @Autowired
     private org.springframework.boot.ApplicationArguments applicationArguments;
-    public  void send(String data, String topic_name) throws IOException {
+    public  void send(String url,String idxgroup, String topic_name, Integer idxTotal, Integer idxNumber) throws IOException {
 
         // Load properties from a local configuration file
         // Create the configuration file (e.g. at '$HOME/.confluent/java.config') with configuration parameters
@@ -66,9 +66,15 @@ public class IdxKafkaProducer {
         Producer<String, DataRecord> producer = new KafkaProducer<String, DataRecord>(props);
 
 
-        DataRecord record = new DataRecord(1L);
-        System.out.printf("Producing record: %s\t%s%n", data, record);
-        producer.send(new ProducerRecord<String, DataRecord>(topic, data, record), new Callback() {
+        DataRecord record = new DataRecord();
+
+        record.setUrl(url);
+        record.setDocument_current_number(idxNumber);
+        record.setTotal_documents(idxTotal);
+
+        System.out.printf("Producing record: %s\t%s%n", idxgroup, record);
+
+        producer.send(new ProducerRecord<String, DataRecord>(topic,idxgroup , record), new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata m, Exception e) {
                     if (e != null) {

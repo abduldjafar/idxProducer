@@ -13,6 +13,9 @@ class BodyResponses {
 
     private String name;
     private String topic;
+    private  String idxGroup;
+    private  Integer idxTotal;
+    private Integer idxNumber;
 
     public Long getId() {
         return id;
@@ -24,16 +27,22 @@ class BodyResponses {
 
     BodyResponses() {}
 
-    BodyResponses(String name, String topic) {
+    BodyResponses(String name, String topic, String idxGroup, Integer idxTotal, Integer idxNumber) {
 
         this.name = name;
         this.topic = topic;
+        this.idxGroup = idxGroup;
+        this.idxTotal = idxTotal;
+        this.idxNumber = idxNumber;
     }
 
     public String getName() {
         return this.name;
     }
     public String getTopic() {return  this.topic;};
+    public  String getIdxGroup(){return  this.idxGroup;}
+    public Integer getIdxTotal(){return  this.idxTotal;}
+    public Integer getIdxNumber(){return  this.idxNumber;}
 
     public void setName(String name) {
         this.name = name;
@@ -58,6 +67,6 @@ class BodyResponses {
 
     @Override
     public String toString() {
-        return "Employee{" + "name='" + this.name + '\'';
+        return new com.google.gson.Gson().toJson(this);
     }
 }
