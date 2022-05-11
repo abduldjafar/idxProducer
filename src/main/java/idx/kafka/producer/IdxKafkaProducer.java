@@ -93,6 +93,52 @@ public class IdxKafkaProducer {
         producer.close();
     }
 
+    @Autowired
+    private org.springframework.boot.ApplicationArguments applicationArgumentst;
+    public  void sendToken(String token,String topic_name) throws IOException {
+
+        // Load properties from a local configuration file
+        // Create the configuration file (e.g. at '$HOME/.confluent/java.config') with configuration parameters
+        // to connect to your Kafka cluster, which can be on your local host, Confluent Cloud, or any other cluster.
+        // Follow these instructions to create this file: https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/java.html
+        final Properties props = loadConfig("kafka.config");
+
+        // Create topic if needed
+        final String topic = topic_name;
+        createTopic(topic, props);
+
+        // Add additional properties.
+        props.put(ProducerConfig.ACKS_CONFIG, "all");
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaJsonSerializer");
+
+        Producer<String, TokenRecord> producer = new KafkaProducer<String, TokenRecord>(props);
+
+
+        TokenRecord record = new TokenRecord();
+
+        record.setToken(token);
+
+        System.out.println(token);
+        producer.send(new ProducerRecord<String, TokenRecord>(topic,"xxxx",record), new Callback() {
+            @Override
+            public void onCompletion(RecordMetadata m, Exception e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    System.out.printf("Produced record to topic %s partition [%d] @ offset %d%n", m.topic(), m.partition(), m.offset());
+                }
+            }
+        });
+
+
+        producer.flush();
+
+        System.out.printf("messages were produced to topic %s%n", topic);
+
+        producer.close();
+    }
+
     public static Properties loadConfig(final String configFile) throws IOException {
         if (!Files.exists(Paths.get(configFile))) {
             throw new IOException(configFile + " not found.");
