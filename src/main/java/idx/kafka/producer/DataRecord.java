@@ -5,6 +5,8 @@ public class DataRecord {
     String url;
     Integer total_documents;
     Integer document_current_number;
+    String path;
+    String filename;
 
     public DataRecord() {
     }
@@ -13,6 +15,30 @@ public class DataRecord {
         this.url = url;
         this.document_current_number = document_current_number;
         this.total_documents = total_documents;
+    }
+
+    public DataRecord(String url,Integer total_documents,Integer document_current_number,String path,String filrname) {
+        this.url = url;
+        this.document_current_number = document_current_number;
+        this.total_documents = total_documents;
+        this.path = path;
+        this.filename = filrname;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public String getUrl() {
@@ -43,6 +69,8 @@ public class DataRecord {
     public String toString() {
         return new com.google.gson.Gson().toJson(this);
     }
+
+
 
 }
 

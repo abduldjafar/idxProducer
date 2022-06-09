@@ -21,7 +21,7 @@ class BodyResponsesController {
 
     @PostMapping("/v1/idx/produces")
     BodyResponses newItem(@RequestBody BodyResponses data) throws IOException {
-        idxKafkaProducer.send(data.getName(), data.getIdxGroup(), data.getTopic(), data.getIdxTotal(), data.getIdxNumber());
+        idxKafkaProducer.send(data.getName(), data.getIdxGroup(), data.getTopic(), data.getIdxTotal(), data.getIdxNumber(),data.getPath(),data.getFilename());
         return data;
     }
 
