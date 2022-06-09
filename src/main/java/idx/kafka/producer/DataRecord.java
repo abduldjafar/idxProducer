@@ -26,11 +26,11 @@ public class DataRecord {
     }
 
     public String getPath() {
-        return path;
+        return this.path;
     }
 
     public String getFilename() {
-        return filename;
+        return this.filename;
     }
 
     public void setPath(String path) {
