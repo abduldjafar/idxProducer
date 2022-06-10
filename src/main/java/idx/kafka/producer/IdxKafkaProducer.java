@@ -59,10 +59,12 @@ public class IdxKafkaProducer {
         // to connect to your Kafka cluster, which can be on your local host, Confluent Cloud, or any other cluster.
         // Follow these instructions to create this file: https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/java.html
         List<String> args = applicationArguments.getOptionValues("config");
+        String kafka_config = new String();
         if (args.size() > 0) {
-            System.out.printf("The value of application arg config: %s%n", args.get(0));
+            kafka_config =  args.get(0);
         }
-        final Properties props = loadConfig("kafka.config");
+
+        final Properties props = loadConfig(kafka_config);
 
         // Create topic if needed
         final String topic = topic_name;
