@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import org.apache.kafka.common.errors.TopicExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,8 @@ import java.util.Collections;
 import java.util.Optional;
 import org.springframework.boot.ApplicationArguments;
 
+@Qualifier("shoes")
 @Service
-@Component
 public class IdxKafkaProducer {
 
     @Value("${kafka-config}")
