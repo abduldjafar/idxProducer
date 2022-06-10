@@ -15,12 +15,14 @@ public class ProducerApplication {
 	public static void main(String[] args) {
 		if (args.length < 2){
 
-			System.out.println("please run : java -jar app.jar listener_port --config=kafka_config.config");
+			System.out.println("please run : java -jar app.jar --config=kafka_config.config listener_port ");
 			System.exit(0);
 		}
+		String port = args[1];
+
 		SpringApplication app = new SpringApplication(ProducerApplication.class);
 		app.setDefaultProperties(Collections
-				.singletonMap("server.port", "8083"));
+				.singletonMap("server.port", port));
 
 		app.run(args);
 	}
