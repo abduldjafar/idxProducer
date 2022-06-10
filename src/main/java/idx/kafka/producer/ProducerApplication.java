@@ -12,7 +12,10 @@ public class ProducerApplication {
 		SpringApplication app = new SpringApplication(ProducerApplication.class);
 		app.setDefaultProperties(Collections
 				.singletonMap("server.port", "8083"));
-		System.out.println(args);
+		for (String arg:args
+			 ) {
+			System.out.println(arg);
+		}
 		app.run(args);
 	}
 
