@@ -14,6 +14,7 @@ import org.apache.kafka.clients.admin.NewTopic;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import org.apache.kafka.common.errors.TopicExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,10 @@ public class IdxKafkaProducer {
         // Create the configuration file (e.g. at '$HOME/.confluent/java.config') with configuration parameters
         // to connect to your Kafka cluster, which can be on your local host, Confluent Cloud, or any other cluster.
         // Follow these instructions to create this file: https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/java.html
-        System.out.println(applicationArguments.getOptionNames());
+        List<String> args = applicationArguments.getOptionValues("config");
+        if (args.size() > 0) {
+            System.out.printf("The value of application arg config: %s%n", args.get(0));
+        }
         final Properties props = loadConfig("kafka.config");
 
         // Create topic if needed
