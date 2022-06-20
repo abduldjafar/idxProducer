@@ -18,12 +18,13 @@ class BodyResponses {
     private Integer idxNumber;
     private String path;
     private  String filename;
+    private String idx_method;
 
     public String getIdx_method() {
-        return idx_method;
+        return this.idx_method;
     }
 
-    private String idx_method;
+
 
     public Long getId() {
         return id;
@@ -35,7 +36,7 @@ class BodyResponses {
 
     BodyResponses() {}
 
-    public BodyResponses(Long id, String name, String topic, String idxGroup, Integer idxTotal, Integer idxNumber, String path, String filename) {
+    public BodyResponses(Long id, String name, String topic, String idxGroup, Integer idxTotal, Integer idxNumber, String path, String filename, String idx_method) {
         this.id = id;
         this.name = name;
         this.topic = topic;
@@ -44,6 +45,7 @@ class BodyResponses {
         this.idxNumber = idxNumber;
         this.path = path;
         this.filename = filename;
+        this.idx_method = idx_method;
     }
 
     public String getName() {
