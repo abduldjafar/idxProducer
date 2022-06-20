@@ -19,6 +19,12 @@ class BodyResponses {
     private String path;
     private  String filename;
 
+    public String getIdx_method() {
+        return idx_method;
+    }
+
+    private String idx_method;
+
     public Long getId() {
         return id;
     }

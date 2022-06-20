@@ -7,6 +7,8 @@ public class DataRecord {
     Integer document_current_number;
     String path;
     String filename;
+    String idx_group_id;
+    String idx_method;
 
     public DataRecord() {
     }
@@ -71,6 +73,12 @@ public class DataRecord {
     }
 
 
+    public void setIdx_group_id(String idx_group_id) {
+        this.idx_group_id = idx_group_id;
+    }
 
+    public void setIdx_method(String idx_method) {
+        this.idx_method = idx_method;
+    }
 }
 

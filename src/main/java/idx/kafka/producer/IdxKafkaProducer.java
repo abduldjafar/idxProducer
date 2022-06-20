@@ -52,7 +52,7 @@ public class IdxKafkaProducer {
 
     @Autowired
     private org.springframework.boot.ApplicationArguments applicationArguments;
-    public  void send(String url,String idxgroup, String topic_name, Integer idxTotal, Integer idxNumber, String path, String filename) throws IOException {
+    public  void send(String url,String idxgroup, String topic_name, Integer idxTotal, Integer idxNumber, String path, String filename, String idx_method) throws IOException {
 
         // Load properties from a local configuration file
         // Create the configuration file (e.g. at '$HOME/.confluent/java.config') with configuration parameters
@@ -85,6 +85,8 @@ public class IdxKafkaProducer {
         record.setTotal_documents(idxTotal);
         record.setFilename(filename);
         record.setPath(path);
+        record.setIdx_group_id(idxgroup);
+        record.setIdx_method(idx_method);
 
         System.out.printf("Producing record: %s\t%s%n", idxgroup, record);
 
