@@ -27,6 +27,18 @@ public class DataRecord {
         this.filename = filrname;
     }
 
+    public Integer getTotal_documents() {
+        return this.total_documents;
+    }
+
+    public String getIdx_group_id() {
+        return this.idx_group_id;
+    }
+
+    public String getIdx_method() {
+        return this.idx_method;
+    }
+
     public String getPath() {
         return this.path;
     }
