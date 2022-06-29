@@ -60,10 +60,6 @@ public class DataRecord {
 
     }
 
-    public Integer getTotalDocuments(){
-        return this.total_documents;
-    }
-
     public  Integer getDocument_current_number(){
         return this.document_current_number;
     }
