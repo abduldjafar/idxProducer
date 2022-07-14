@@ -62,6 +62,7 @@ public class IdxKafkaProducer {
         String kafka_config = new String();
         if (args.size() > 0) {
             kafka_config =  args.get(0);
+            System.out.println(kafka_config);
         }
 
         final Properties props = loadConfig(kafka_config);
